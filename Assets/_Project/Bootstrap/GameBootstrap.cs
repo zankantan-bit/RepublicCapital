@@ -7,13 +7,14 @@ using RepublicCapital.Gameplay.Time;
 
 namespace RepublicCapital.Bootstrap
 {
+    [DefaultExecutionOrder(-1000)]
     public class GameBootstrap : MonoBehaviour
     {
         private void Awake()
         {
             RCLogger.Log("Bootstrap Started");
 
-            // Game Configuration
+            // Configuration
             var config = new GameConfig();
             ServiceLocator.Register(config);
             RCLogger.Log("GameConfig Registered");
@@ -35,7 +36,11 @@ namespace RepublicCapital.Bootstrap
             ServiceLocator.Register(timeManager);
             RCLogger.Log("TimeManager Registered");
 
-            // Debug Information
+            // Turn Manager
+            var turnManager = new TurnManager(timeManager);
+            ServiceLocator.Register(turnManager);
+            RCLogger.Log("TurnManager Registered");
+
             RCLogger.Log($"Money : {state.Money:N0}");
             RCLogger.Log($"Population : {state.Population:N0}");
             RCLogger.Log($"Date : {timeManager.CurrentDateString}");

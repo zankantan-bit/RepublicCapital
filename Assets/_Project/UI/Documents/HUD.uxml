@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ui:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ui="UnityEngine.UIElements"
+    xmlns:uie="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd">
+
+    <ui:VisualElement name="Root" class="root">
+
+        <ui:VisualElement class="top-bar">
+
+            <ui:Label
+                name="DateLabel"
+                text="01/2025"
+                class="date" />
+
+            <ui:Label
+                name="MoneyLabel"
+                text="$1,000,000"
+                class="money" />
+
+            <ui:Label
+                name="PopulationLabel"
+                text="50,000"
+                class="population" />
+
+        </ui:VisualElement>
+
+        <ui:VisualElement class="bottom">
+
+            <ui:Button
+                name="NextTurnButton"
+                text="NEXT TURN" />
+
+        </ui:VisualElement>
+
+    </ui:VisualElement>
+
+</ui:UXML>

@@ -1,12 +1,11 @@
 using System;
+using RepublicCapital.Common;
 using RepublicCapital.Gameplay.Core;
 
 namespace RepublicCapital.Gameplay.Time
 {
     public class TimeManager
     {
-        public event Action OnDateChanged;
-
         private readonly GameState _gameState;
 
         public TimeManager(GameState gameState)
@@ -27,7 +26,7 @@ namespace RepublicCapital.Gameplay.Time
                 _gameState.Year++;
             }
 
-            OnDateChanged?.Invoke();
+            GameEvents.RaiseDateChanged();
         }
     }
 }

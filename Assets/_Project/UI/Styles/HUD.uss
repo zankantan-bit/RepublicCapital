@@ -1,0 +1,42 @@
+.root
+{
+    flex-grow: 1;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.top-bar
+{
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.date
+{
+    font-size: 22px;
+    color: white;
+}
+
+.money
+{
+    font-size: 22px;
+    color: #6CFF6C;
+}
+
+.population
+{
+    font-size: 22px;
+    color: #FFD54F;
+}
+
+.bottom
+{
+    align-items: center;
+}
+
+Button
+{
+    width: 220px;
+    height: 55px;
+    font-size: 20px;
+}
