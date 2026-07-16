@@ -3,6 +3,7 @@ using RepublicCapital.Core.Logging;
 using RepublicCapital.Core.Services;
 using RepublicCapital.Core.Configuration;
 using RepublicCapital.Gameplay.Core;
+using RepublicCapital.Gameplay.Time;
 
 namespace RepublicCapital.Bootstrap
 {
@@ -15,33 +16,29 @@ namespace RepublicCapital.Bootstrap
             // Game Configuration
             var config = new GameConfig();
             ServiceLocator.Register(config);
-
             RCLogger.Log("GameConfig Registered");
-
-            var loadedConfig = ServiceLocator.Get<GameConfig>();
-
-            RCLogger.Log($"Starting Money : {loadedConfig.StartingMoney:N0}");
-            RCLogger.Log($"Population : {loadedConfig.StartingPopulation:N0}");
-            RCLogger.Log($"Date : {loadedConfig.StartingMonth}/{loadedConfig.StartingYear}");
 
             // Game State
             var state = new GameState
             {
-                Money = loadedConfig.StartingMoney,
-                Population = loadedConfig.StartingPopulation,
-                Year = loadedConfig.StartingYear,
-                Month = loadedConfig.StartingMonth
+                Money = config.StartingMoney,
+                Population = config.StartingPopulation,
+                Year = config.StartingYear,
+                Month = config.StartingMonth
             };
 
             ServiceLocator.Register(state);
-
             RCLogger.Log("GameState Registered");
 
-            var gameState = ServiceLocator.Get<GameState>();
+            // Time Manager
+            var timeManager = new TimeManager(state);
+            ServiceLocator.Register(timeManager);
+            RCLogger.Log("TimeManager Registered");
 
-            RCLogger.Log($"Money : {gameState.Money:N0}");
-            RCLogger.Log($"Population : {gameState.Population:N0}");
-            RCLogger.Log($"Date : {gameState.Month}/{gameState.Year}");
+            // Debug Information
+            RCLogger.Log($"Money : {state.Money:N0}");
+            RCLogger.Log($"Population : {state.Population:N0}");
+            RCLogger.Log($"Date : {timeManager.CurrentDateString}");
         }
     }
 }
